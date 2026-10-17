@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">leksjonSockets</string><string name="error">Porten lot seg ikke åpne</string>
+    <string name="client">En klient har koblet seg til</string>
+    <string name="closed">Serveren lukket forbindelsen</string>
+    <string name="waiting">Venter...</string>
+</resources>
