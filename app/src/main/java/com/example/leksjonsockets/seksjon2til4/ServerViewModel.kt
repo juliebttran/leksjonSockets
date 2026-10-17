@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 const val PORT = 12345
 class ServerViewModel : ViewModel() {
     private val server = ChatServer(PORT)
-    private var connection: Connection? = null
     private val _client = MutableStateFlow<String?>(null)
     val client: StateFlow<String?> = _client.asStateFlow()
     private val _error = MutableStateFlow<String?>(null)
@@ -19,16 +18,11 @@ class ServerViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val socket = server.awaitClient()
-                connection = Connection(socket)
+                val connection = Connection(socket)
                 _client.value = socket.inetAddress.hostAddress
             } catch (e: IOException) {
                 _error.value = e.toString()
             }
         }
-    }
-
-    override fun onCleared() {
-        connection?.close()
-        server.close()
     }
 }
