@@ -1,4 +1,4 @@
-package com.example.leksjonsockets.seksjon2til5
+package com.example.leksjonsockets.seksjon2til4
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 const val PORT = 12345
 class ServerViewModel : ViewModel() {
     private val server = ChatServer(PORT)
+    private var connection: Connection? = null
     private val _client = MutableStateFlow<String?>(null)
     val client: StateFlow<String?> = _client.asStateFlow()
     private val _error = MutableStateFlow<String?>(null)
@@ -18,11 +19,16 @@ class ServerViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val socket = server.awaitClient()
-                val connection = Connection(socket)
+                connection = Connection(socket)
                 _client.value = socket.inetAddress.hostAddress
             } catch (e: IOException) {
                 _error.value = e.toString()
             }
         }
+    }
+
+    override fun onCleared() {
+        connection?.close()
+        server.close()
     }
 }

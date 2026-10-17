@@ -1,4 +1,4 @@
-package com.example.leksjonsockets.seksjon2til5
+package com.example.leksjonsockets.seksjon2til4
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,16 +7,18 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun ServerScreenWithViewModel (
+fun ClientScreenWithViewModel (
     modifier: Modifier = Modifier,
-    viewModel: ServerViewModel = viewModel(),
+    viewModel: ClientViewModel = viewModel(),
     ){
-    val client by viewModel.client.collectAsStateWithLifecycle()
+    val received by viewModel.received.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
+    val closed by viewModel.closed.collectAsStateWithLifecycle()
 
-    ServerScreen(
-        client = client,
+    ClientScreen(
+        received = received,
         error = error,
+        closed = closed,
         modifier = modifier
     )
 }

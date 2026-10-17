@@ -1,4 +1,4 @@
-package com.example.leksjonsockets.seksjon2til5
+package com.example.leksjonsockets.seksjon2til4
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,7 +30,7 @@ fun ServerScreen(
                 Text(text= stringResource(R.string.error))
             }
             else if (client == null) {
-                Text(text = stringResource(R.string.waiting))
+                Text(text = stringResource(R.string.server_waiting))
             }
             else {
                 Text(text = stringResource(R.string.client))

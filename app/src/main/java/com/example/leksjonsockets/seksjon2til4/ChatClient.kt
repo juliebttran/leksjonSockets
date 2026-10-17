@@ -1,4 +1,4 @@
-package com.example.leksjonsockets.seksjon2til5
+package com.example.leksjonsockets.seksjon2til4
 
 import java.net.Socket
 import kotlinx.coroutines.Dispatchers

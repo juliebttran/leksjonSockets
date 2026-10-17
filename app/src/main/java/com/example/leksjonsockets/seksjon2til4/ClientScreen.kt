@@ -1,4 +1,4 @@
-package com.example.leksjonsockets.seksjon2til5
+package com.example.leksjonsockets.seksjon2til4
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,13 +27,13 @@ fun ClientScreen(
                 .padding(innerPadding),
         ) {
             if (error != null) {
-                Text(text = stringResource(R.string.error))
+                Text(text = error)
             } else if (closed) {
                 Text(text = stringResource(R.string.closed))
             } else if (received != null) {
                 Text(text = received)
             } else {
-                Text(text = stringResource(R.string.waiting))
+                Text(text = stringResource(R.string.client_waiting))
             }
         }
     }
